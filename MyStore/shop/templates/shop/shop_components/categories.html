@@ -1,0 +1,17 @@
+<div class="product-categorie-box">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+            <div class="row">
+                {% for product in product_list %}
+                    {% include "shop/shop_components/product_card.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="list-view">
+            {% for product in product_list %}
+                {% include "shop/shop_components/product_card_colum.html" %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

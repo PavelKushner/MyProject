@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+GALLERY
+{% endblock %}
+
+{% block content %}
+    <!-- Start Main Top -->
+    {% include "shop/components/main-top.html" %}
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    {% include "shop/components/header.html" %}
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    {% include "shop/components/search.html" %}
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Services</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Gallery  -->
+    {% include "shop/gallery/body_gallery.html" %}
+    <!-- End Gallery  -->
+
+    <!-- Start Instagram Feed  -->
+    {% include "shop/components/instagram_feed.html" %}
+    <!-- End Instagram Feed  -->
+
+    <!-- Start Footer  -->
+    {% include "shop/components/footer.html" %}
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    {% include "shop/components/copyright.html" %}
+    <!-- End copyright  -->
+{% endblock %}

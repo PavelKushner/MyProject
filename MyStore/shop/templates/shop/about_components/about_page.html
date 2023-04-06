@@ -1,0 +1,16 @@
+<div class="about-box-main">
+    <div class="container">
+        {% include "shop/about_components/information_about_us.html" %}
+        {% for aboutus in aboutuss %}
+            {% include "shop/about_components/about_us.html" %}
+        {% endfor %}
+        <div class="row my-4">
+      <div class="col-12">
+          <h2 class="noo-sh-title">Our Team</h2>
+      </div>
+        {% for team in teams %}
+            {% include "shop/about_components/our_team.html" %}
+        {% endfor %}
+        </div>
+    </div>
+</div>

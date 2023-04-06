@@ -1,0 +1,55 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+MY-ACCOUNT
+{% endblock %}
+
+{% block content %}
+    <!-- Start Main Top -->
+    {% include "shop/components/main-top.html" %}
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    {% include "shop/components/header.html" %}
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    {% include "shop/components/search.html" %}
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Account</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">My Account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start My Account  -->
+    {% include "shop/my-account/my_account_body.html" %}
+    <!-- End My Account -->
+
+    <!-- Start Instagram Feed  -->
+    {% include "shop/components/instagram_feed.html" %}
+    <!-- End Instagram Feed  -->
+
+
+    <!-- Start Footer  -->
+    {% include "shop/components/footer.html" %}
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    {% include "shop/components/copyright.html" %}
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+ {% endblock %}

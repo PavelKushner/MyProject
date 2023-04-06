@@ -1,0 +1,66 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+HOME PAGE
+{% endblock %}
+
+{% block content %}
+<!-- Start Main Top -->
+{% include "shop/components/main-top.html" %}
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+{% include "shop/components/header.html" %}
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+{% include "shop/components/search.html" %}
+<!-- End Top Search -->
+
+<!-- Start Slider -->
+{% include "shop/components/slider.html" %}
+<!-- End Slider -->
+
+<!-- Start Categories  -->
+{% include "shop/components/categories.html" %}
+<!-- End Categories -->
+	
+	<div class="box-add-products">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<div class="offer-box-products">
+						<img class="img-fluid" src="images/add-img-01.jpg" alt="" />
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<div class="offer-box-products">
+						<img class="img-fluid" src="images/add-img-02.jpg" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Start Products  -->
+{% include "shop/components/products.html" %}
+<!-- End Products  -->
+
+<!-- Start Blog  -->
+{% include "shop/components/blog.html" %}
+<!-- End Blog  -->
+
+<!-- Start Instagram Feed  -->
+{% include "shop/components/instagram_feed.html" %}
+<!-- End Instagram Feed  -->
+
+<!-- Start Footer  -->
+{% include "shop/components/footer.html" %}
+<!-- End Footer  -->
+    <!-- Start copyright  -->
+{% include "shop/components/copyright.html" %}
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+{% endblock%}

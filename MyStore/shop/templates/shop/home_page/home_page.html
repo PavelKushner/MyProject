@@ -1,0 +1,58 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+HOME PAGE
+{% endblock %}
+
+{% block content %}
+<!-- Start Main Top -->
+{% include "shop/components/main-top.html" %}
+<!-- End Main Top -->
+<!-- Start Main Top -->
+{% include "shop/components/header.html" %}
+<!-- End Main Top -->
+<!-- Start Top Search -->
+{% include "shop/components/search.html" %}
+<!-- End Top Search -->
+<!-- Start Slider -->
+{% include "shop/components/slider.html" %}
+<!-- End Slider -->
+<div class="box-add-products">
+	<div class="container">
+		<div class="row">
+			{% for promotion in promotion_list %}
+				{% include "shop/home_page/promotion.html" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<!-- Start Products  -->
+{% include "shop/components/products.html" %}
+<!-- End Products  -->
+<!-- Start Blog  -->
+<div class="latest-blog">
+    <div class="container">
+		{% include "shop/home_page/name_blog.html " %}
+			{% for blog in blog_list %}
+				{% include "shop/components/blog.html" %}
+			{% endfor %}
+	</div>
+</div>
+<!-- End Blog  -->
+<!-- Start Instagram Feed  -->
+{% include "shop/components/instagram_feed.html" %}
+<!-- End Instagram Feed  -->
+<!-- Start Footer  -->
+{% include "shop/components/footer.html" %}
+<!-- End Footer  -->
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+            <a href="https://html.design/">html design</a></p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+{% endblock%}

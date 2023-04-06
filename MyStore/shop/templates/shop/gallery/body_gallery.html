@@ -1,0 +1,36 @@
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Our Gallery</h1>
+                    <p>Какой то текст</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">All</button>
+                        <button data-filter=".berry">Berry</button>
+                        <button data-filter=".fruits">Fruits</button>
+                        <button data-filter=".podded-vegetables">Vegetables</button>
+                        <button data-filter=".root-and-tuberous">Root and tuberous</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row special-list">
+                <div class="col-3 col-md-3 special-grid bulbs">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                    {% for gallery in gallery_list %}
+                        {% include "shop/gallery/row_gallery.html" %}
+                    {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

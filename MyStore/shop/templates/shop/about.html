@@ -1,0 +1,44 @@
+{% extends "shop/base.html"%}
+
+{% block title %}
+ABOUT US
+{% endblock %}
+
+{% block content %}
+
+{% include "shop/components/main-top.html" %}
+
+{% include "shop/components/header.html" %}
+
+{% include "shop/components/search.html" %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>ABOUT US</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=" {% url 'home_page' %} ">Home</a></li>
+                        <li class="breadcrumb-item active">ABOUT US</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start About Page  -->
+{% include "shop/about_components/about_page.html" %}
+    <!-- End About Page -->
+{% include "shop/components/instagram_feed.html" %}
+
+{% include "shop/components/footer.html" %}
+
+    <!-- Start copyright  -->
+{% include "shop/components/copyright.html" %}
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+{% endblock %}
