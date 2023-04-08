@@ -22,7 +22,7 @@
         <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
             <div class="why-text full-width">
                 <h4>{{ product.name }}</h4>
-                <h5> <del>$ {{product.price}}</del> ${{product.price|mul:product.disc|div:100}}</h5>
+                <h5> <del>$ {{product.price}}</del> ${{product.price|mul:100|sub:product.disc|div:100}}</h5>
                 <p>{{ product.descr }}</p>
                 <a class="btn hvr-hover" href="#">Add to Cart</a>
             </div>

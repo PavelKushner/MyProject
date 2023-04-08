@@ -31,6 +31,18 @@ def checkout(request):
     return render(request, 'shop/checkout/checkout.html')
 
 
+def wishlist(request):
+    return render(request, 'shop/wishlist/wishlist.html')
+
+
+def shop_detail(request):
+    return render(request, 'shop/shop_detail/shop-detail.html')
+
+
+def cart(request):
+    return render(request, 'shop/cart/cart.html')
+
+
 def my_account(request):
     return render(request, 'shop/my-account/my-account.html')
 
