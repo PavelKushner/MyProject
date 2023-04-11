@@ -1,11 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
 from django.views.generic import ListView, RedirectView, CreateView
 
-from .forms import UserRegisterForm, LoginForm
-from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery
+from .forms import UserRegisterForm, LoginForm, CartProductForm
+from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems
 
 
 # Create your views here.
@@ -37,10 +39,6 @@ def wishlist(request):
 
 def shop_detail(request):
     return render(request, 'shop/shop_detail/shop-detail.html')
-
-
-def cart(request):
-    return render(request, 'shop/cart/cart.html')
 
 
 def my_account(request):
@@ -105,3 +103,41 @@ class SignInView(LoginView):
     template_name = 'shop/registration/login.html'
     form_class = LoginForm
 
+
+class CartListView(LoginRequiredMixin, ListView):
+    model = OrderItems
+    template_name = 'shop/cart/cart.html'
+    context_object_name = 'order_items_list'
+
+    def get_queryset(self):
+        return self.model.objects.filter(order__is_paid=False)
+
+# @require_POST
+# def cart_add(request, product_id):
+#     cart = Cart(request)
+#     product = get_object_or_404(Product, id=product_id)
+#     form = CartProductForm(request.POST)
+#     if form.is_valid():
+#         cd = form.cleaned_data
+#         cart.add(product=product,
+#                  quantity=cd['quantity'],
+#                  update_quantity=cd['update'])
+#
+#     return redirect('cart_detail')
+#
+#
+# def cart_remove(request, product_id):
+#     cart = Cart(request)
+#     product = get_object_or_404(Product, id=product_id)
+#     cart.remove(product)
+#     return redirect('cart_detail')
+#
+#
+# def cart_detail(request):
+#     cart = Cart(request)
+#     for item in cart:
+#         item['update_quantity_form'] = CartProductForm(initial={
+#             'quantity': item['quantity'],
+#             'update': True
+#         })
+#     return render(request, 'shop/cart.html')
