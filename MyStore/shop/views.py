@@ -2,11 +2,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, RedirectView, CreateView
 
-from .forms import UserRegisterForm, LoginForm, CartProductForm
+from .forms import UserRegisterForm, LoginForm, CartProductForm, ContactUsForm
 from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems
 
 
@@ -26,7 +27,12 @@ class ProductListView(ListView):
 
 
 def contactus(request):
-    return render(request, 'shop/contact_us/contact-us.html')
+    if request.method == "POST":
+        message = request.POST.get("message")
+        return HttpResponse({message})
+    else:
+        contact = ContactUsForm()
+        return render(request, 'shop/contact_us/contact-us.html', {'form': contact})
 
 
 def checkout(request):

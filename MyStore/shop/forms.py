@@ -28,8 +28,8 @@ class UserRegisterForm(UserCreationForm):
                 "placeholder": 'Re-Enter password'
             }
         ),
-        # strip=False,
-        # help_text=_("Enter the same password as before, for verification."),
+        strip=False,
+        help_text=_("Enter the same password as before, for verification."),
     )
     username = forms.CharField(
         widget=forms.TextInput(
@@ -91,3 +91,14 @@ class CartProductForm(forms.Form):
         initial=False,
         widget=forms.HiddenInput
     )
+
+
+class ContactUsForm(forms.Form):
+    name = forms.CharField(label="Your Name", widget=forms.TextInput(
+        attrs={"placeholder": 'Your Name', "class": "form-control"}))
+    email = forms.EmailField(label="Your Email", widget=forms.TextInput(
+        attrs={"placeholder": "Your Email", "class": "form-control"}))
+    subject = forms.CharField(widget=forms.TextInput(
+        attrs={"placeholder": "Subject", "class": "form-control"}))
+    message = forms.CharField(widget=forms.Textarea(attrs={
+        "placeholder": "Your message", "class": "form-control"}))
