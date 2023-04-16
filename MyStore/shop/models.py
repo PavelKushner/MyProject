@@ -333,3 +333,18 @@ class Message(models.Model):
     class Meta:
         verbose_name = 'сообщение',
         verbose_name_plural = 'сообщения'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    email = models.EmailField(default='111@gmai.com', verbose_name='email', blank=False, null=False)
+    name = models.CharField(max_length=32, verbose_name='имя', blank=False, null=False)
+    image = models.ImageField(verbose_name='аватар', upload_to='profile/', null=False, blank=False)
+    slug = models.SlugField(verbose_name='URL', unique=True, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'профиль'
+        verbose_name_plural = 'профили'

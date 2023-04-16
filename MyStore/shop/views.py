@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -5,11 +6,11 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, RedirectView, CreateView
+from django.views.generic import ListView, RedirectView, CreateView, DetailView
 from slugify import slugify
 
-from .forms import UserRegisterForm, LoginForm, CartProductForm, ContactUsForm
-from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems, Message
+from .forms import UserRegisterForm, LoginForm, CartProductForm, ContactUsForm, UserUpdateForm
+from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems, Message, Profile
 
 
 # Create your views here.
@@ -45,7 +46,6 @@ class ContactUsListView(ListView):
         data = request.POST.dict()
         data.update(slug=slugify(request.POST.get('user')))
         form = ContactUsForm(data)
-        print(data)
         if form.is_valid():
             form.save()
         return self.get(request=request)
@@ -143,5 +143,11 @@ class CartListView(LoginRequiredMixin, ListView):
         for product in context[self.context_object_name]:
             context['total_amount'] += product.product.price
         return context
+
+
+class ProfilePageView(ListView):
+    model = Profile
+    template_name = 'shop/my-account/profile.html'
+    context_object_name = 'my_profile'
 
 

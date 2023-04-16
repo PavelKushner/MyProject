@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.contrib.auth.models import User
 from django.forms import ModelForm, TextInput, Textarea
 from django.utils.translation import gettext_lazy as _
 
-from .models import Message
+from .models import Message, Profile
 
 
 class UserRegisterForm(UserCreationForm):
@@ -109,11 +110,10 @@ class ContactUsForm(ModelForm):
             'slug': TextInput(attrs={'required': False, 'hidden': True, 'id': 'slug', 'value': ''})
         }
 
-    # name = forms.CharField(label="Your Name", widget=forms.TextInput(
-    #     attrs={"placeholder": 'Your Name', 'id': 'name', "class": "form-control"}))
-    # email = forms.EmailField(label="Your Email", widget=forms.TextInput(
-    #     attrs={"placeholder": "Your Email", 'id': 'email', "class": "form-control"}))
-    # subject = forms.CharField(widget=forms.TextInput(
-    #     attrs={"placeholder": "Subject", 'id': 'subject', "class": "form-control"}))
-    # message = forms.CharField(widget=forms.Textarea(
-    #     attrs={"placeholder": "Your message", 'id': 'message', "class": "form-control"}))
+
+class UserUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = {'user', 'email', 'name', 'image'}
+
+
