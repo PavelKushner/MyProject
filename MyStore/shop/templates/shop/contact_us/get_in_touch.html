@@ -1,13 +1,13 @@
 <div class="col-lg-8 col-sm-12">
     <div class="contact-form-right">
         <h2>GET IN TOUCH</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
+        <p>Ваши пожелания</p>
         <form id="contactForm" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        {{ contact_us.name }}
+                        {{ contact_us.user }}
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>

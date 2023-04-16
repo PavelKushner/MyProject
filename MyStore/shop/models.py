@@ -323,10 +323,9 @@ class OrderItems(models.Model):
 
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    email = models.CharField(max_length=32, verbose_name='email', blank=False, null=False)
+    email = models.EmailField(verbose_name='email', blank=False, null=False)
     subject = models.CharField(max_length=32, verbose_name='тема', blank=False, null=False)
     message = models.CharField(max_length=4000, verbose_name='письмо', blank=False, null=False)
-
 
     def __str__(self):
         return self.user

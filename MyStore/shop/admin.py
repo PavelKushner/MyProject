@@ -51,9 +51,10 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 @admin.register(OrderItems)
-class OrderItemsAdmin(admin.ModelAdmin):
+class OrderItems(admin.ModelAdmin):
     ...
 
+
 @admin.register(Message)
-class MessageAdmin(admin.ModelAdmin):
+class Message(admin.ModelAdmin):
     ...

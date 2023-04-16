@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
-from .views import ProductListView, TeamListView, HomeListView, GalleryListView, ContactUsListView, checkout, my_account
+from .views import ProductListView, TeamListView, HomeListView, GalleryListView, checkout, my_account, ContactUsListView
 from .views import RegisterView, SignInView, wishlist, shop_detail, CartListView
 
 urlpatterns = [

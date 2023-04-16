@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput, Textarea
 from django.utils.translation import gettext_lazy as _
+
+from .models import Message
 
 
 class UserRegisterForm(UserCreationForm):
@@ -94,12 +96,24 @@ class CartProductForm(forms.Form):
     )
 
 
-class ContactUsForm(forms.Form):
-    name = forms.CharField(label="Your Name", widget=forms.TextInput(
-        attrs={"placeholder": 'Your Name', "class": "form-control"}))
-    email = forms.EmailField(label="Your Email", widget=forms.TextInput(
-        attrs={"placeholder": "Your Email", "class": "form-control"}))
-    subject = forms.CharField(widget=forms.TextInput(
-        attrs={"placeholder": "Subject", "class": "form-control"}))
-    message = forms.CharField(widget=forms.Textarea(
-        attrs={"placeholder": "Your message", "class": "form-control"}))
+class ContactUsForm(ModelForm):
+
+    class Meta:
+        model = Message
+        fields = {'user', 'email', 'subject', 'message'}
+        widgets ={
+            'user': TextInput(attrs={"placeholder": 'Your Name', 'id': 'name', "class": "form-control"}),
+            'email': TextInput(attrs={"placeholder": "Your Email", 'id': 'email', "class": "form-control"}),
+            'subject': TextInput(attrs={"placeholder": "Subject", 'id': 'subject', "class": "form-control"}),
+            'message': Textarea(attrs={"placeholder": "Your message", 'id': 'message', "class": "form-control"}),
+            'slug': TextInput(attrs={'required': False, 'hidden': True, 'id': 'slug', 'value': ''})
+        }
+
+    # name = forms.CharField(label="Your Name", widget=forms.TextInput(
+    #     attrs={"placeholder": 'Your Name', 'id': 'name', "class": "form-control"}))
+    # email = forms.EmailField(label="Your Email", widget=forms.TextInput(
+    #     attrs={"placeholder": "Your Email", 'id': 'email', "class": "form-control"}))
+    # subject = forms.CharField(widget=forms.TextInput(
+    #     attrs={"placeholder": "Subject", 'id': 'subject', "class": "form-control"}))
+    # message = forms.CharField(widget=forms.Textarea(
+    #     attrs={"placeholder": "Your message", 'id': 'message', "class": "form-control"}))

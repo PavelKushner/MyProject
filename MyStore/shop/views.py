@@ -11,6 +11,7 @@ from slugify import slugify
 from .forms import UserRegisterForm, LoginForm, CartProductForm, ContactUsForm
 from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems, Message
 
+
 # Create your views here.
 class ProductListView(ListView):
     template_name = 'shop/shop.html'
@@ -30,6 +31,7 @@ class ContactUsListView(ListView):
     model = Message
     template_name = 'shop/contact_us/contact-us.html'
     http_method_names = ('get', 'post')
+    context_object_name = 'messages'
 
     def get_queryset(self):
         return Message.objects.all()
@@ -41,8 +43,9 @@ class ContactUsListView(ListView):
 
     def post(self, request: HttpRequest):
         data = request.POST.dict()
-        data.update(slug=slugify(request.POST.get('name')))
+        data.update(slug=slugify(request.POST.get('user')))
         form = ContactUsForm(data)
+        print(data)
         if form.is_valid():
             form.save()
         return self.get(request=request)
@@ -108,7 +111,7 @@ class GalleryListView(ListView):
             'gallery_list': self.model1.objects.all(),
             'insta_list': self.model2.objects.all()
         }
-        return render(request,self.template_name, self.context)
+        return render(request, self.template_name, self.context)
 
 
 class RegisterView(CreateView):
