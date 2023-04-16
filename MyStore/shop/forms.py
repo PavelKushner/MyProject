@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 
@@ -100,5 +101,5 @@ class ContactUsForm(forms.Form):
         attrs={"placeholder": "Your Email", "class": "form-control"}))
     subject = forms.CharField(widget=forms.TextInput(
         attrs={"placeholder": "Subject", "class": "form-control"}))
-    message = forms.CharField(widget=forms.Textarea(attrs={
-        "placeholder": "Your message", "class": "form-control"}))
+    message = forms.CharField(widget=forms.Textarea(
+        attrs={"placeholder": "Your message", "class": "form-control"}))

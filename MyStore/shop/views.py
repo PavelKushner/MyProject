@@ -2,14 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, RedirectView, CreateView
+from slugify import slugify
 
 from .forms import UserRegisterForm, LoginForm, CartProductForm, ContactUsForm
-from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems
-
+from .models import Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems, Message
 
 # Create your views here.
 class ProductListView(ListView):
@@ -26,13 +26,26 @@ class ProductListView(ListView):
         return render(request, self.template_name, self.context)
 
 
-def contactus(request):
-    if request.method == "POST":
-        message = request.POST.get("message")
-        return HttpResponse({message})
-    else:
-        contact = ContactUsForm()
-        return render(request, 'shop/contact_us/contact-us.html', {'form': contact})
+class ContactUsListView(ListView):
+    model = Message
+    template_name = 'shop/contact_us/contact-us.html'
+    http_method_names = ('get', 'post')
+
+    def get_queryset(self):
+        return Message.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ContactUsListView, self).get_context_data()
+        context['contact_us'] = ContactUsForm()
+        return context
+
+    def post(self, request: HttpRequest):
+        data = request.POST.dict()
+        data.update(slug=slugify(request.POST.get('name')))
+        form = ContactUsForm(data)
+        if form.is_valid():
+            form.save()
+        return self.get(request=request)
 
 
 def checkout(request):

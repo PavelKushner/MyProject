@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from .models import Category, Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems
+from .models import Category, Product, Team, AboutUs, Blog, Promotion, Insta, Gallery, Order, OrderItems, Message
 
 
 @admin.register(Category)
@@ -52,4 +52,8 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderItems)
 class OrderItemsAdmin(admin.ModelAdmin):
+    ...
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
     ...

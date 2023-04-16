@@ -6,7 +6,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Product(models.Model):
     name = models.CharField(
         max_length=32,
@@ -320,3 +319,18 @@ class OrderItems(models.Model):
 
     def __str__(self):
         return f'Order {self.order} Product {self.product}'
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    email = models.CharField(max_length=32, verbose_name='email', blank=False, null=False)
+    subject = models.CharField(max_length=32, verbose_name='тема', blank=False, null=False)
+    message = models.CharField(max_length=4000, verbose_name='письмо', blank=False, null=False)
+
+
+    def __str__(self):
+        return self.user
+
+    class Meta:
+        verbose_name = 'сообщение',
+        verbose_name_plural = 'сообщения'
